@@ -8,20 +8,41 @@
 
 import Cocoa
 
+let EMOJIS = ["🐛", "🏕", "🦎", "🍓", "👥", "🦍", "🏀", "🐊", "🔝", "👻", "🌖", "💎", "🎒", "🏮", "👐", "🐌", "💂", "🍡", "🍉", "🍄", "🐘", "🕌", "🌾", "😸", "🌵", "🌈", "💧", "🏾‍", "👅", "🤠", "🐸", "📣", "🏻", "🏿", "💪", "🐆", "🐚", "🎹", "👹", "☘️", "🚄", "🦊", "⚓️", "🌹", "🤖", "👺", "⛩", "🐫", "✈️", "⛪️", "🦆", "🐹", "🏳️‍", "🙏", "🍪", "🎁", "🍮", "🐔", "🇬🇧", "🚠", "🚎", "🍭", "👾", "🐨", "🍁", "🇨🇳", "🌻", "☄️", "😊", "🐽", "😀", "🐄", "🌏", "🗿", "🌈", "🔜", "🍿", "🎃", "🎲", "🐍", "🖖", "🥒", "😶", "🕵", "🍔", "🐧", "🍣", "📖", "🦇", "🐼", "🎩", "🦋", "🐒", "👀", "🌤", "🈚️", "🇺🇸", "🌊", "🌿", "🎼", "🔙", "✨", "🌺", "🐉", "🐾", "👩‍", "👁", "🤥", "🤙", "⭐️", "🐝", "👣", "🎈", "🐞", "🤳", "🇪🇺"]
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
-
-
+    
+    var statusBarItem: NSStatusItem!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        statusBarItem = NSStatusBar.system().statusItem(withLength: -1)
+        statusBarItem.target = self
+        statusBarItem.action = #selector(iconClicked(sender:))
+        
+        if let currentEmoji = UserDefaults.standard.object(forKey: "com.primlo.emojicalendar.emoji") as? Int {
+            changeEmoji(index: currentEmoji)
+        } else {
+            changeToTodaysEmoji()
+        }
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    
+    func changeToTodaysEmoji() {
+        let date = Date()
+        let cal = Calendar.current
+        guard let day = cal.ordinality(of: .day, in: .year, for: date) else {
+            return
+        }
+        
+        changeEmoji(index: day)
+        UserDefaults.standard.set(day, forKey: "com.primlo.emojicalendar.emoji")
     }
-
-
+    
+    func changeEmoji(index: Int) {
+        statusBarItem.title = EMOJIS[index % EMOJIS.count]
+    }
+    
+    func iconClicked(sender: Any) {
+        changeToTodaysEmoji()
+    }
 }
-
