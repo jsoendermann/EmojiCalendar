@@ -10,7 +10,6 @@
 		3D0F24031E7B02C000BD5DBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F24021E7B02C000BD5DBC /* AppDelegate.swift */; };
 		3D0F24051E7B02C000BD5DBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D0F24041E7B02C000BD5DBC /* Assets.xcassets */; };
 		3D0F24081E7B02C000BD5DBC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0F24061E7B02C000BD5DBC /* MainMenu.xib */; };
-		3D2F750F1E7B0BD1003A6A2F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D0F24091E7B02C000BD5DBC /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,7 +119,6 @@
 			files = (
 				3D0F24051E7B02C000BD5DBC /* Assets.xcassets in Resources */,
 				3D0F24081E7B02C000BD5DBC /* MainMenu.xib in Resources */,
-				3D2F750F1E7B0BD1003A6A2F /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
